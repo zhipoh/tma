@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: var(--tg-theme-button-color);
+            color: var(--tg-theme-button-text-color);
+            cursor: pointer;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .menu-item {
+            background: var(--tg-theme-secondary-bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .menu-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button onclick="showPage('membership')">Membership</button>
+        <button onclick="showPage('menu')">Menu</button>
+        <button onclick="showPage('order')">Order</button>
+        <button onclick="showPage('faq')">FAQ</button>
+    </div>
+
+    <!-- Membership Page -->
+    <div id="membership" class="page active">
+        <h2>Your Membership</h2>
+        <div id="user-data">
+            <p>Loading membership data...</p>
+        </div>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menu" class="page">
+        <h2>Our Menu</h2>
+        <button onclick="openPDF()">View PDF Menu</button>
+    </div>
+
+    <!-- Order Page -->
+    <div id="order" class="page">
+        <h2>Order Items</h2>
+        <div id="menu-items"></div>
+    </div>
+
+    <!-- FAQ Page -->
+    <div id="faq" class="page">
+        <h2>Frequently Asked Questions</h2>
+        <p>FAQ content will be added here</p>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Expand to full screen
+
+        // Dummy User Data (Replace with Supabase fetch)
+        const dummyUser = {
+            id: 123456789,
+            membership_points: 1500,
+            name: "John Doe",
+            register_date: "2023-01-15"
+        };
+
+        // Dummy Menu Items (Replace with Supabase fetch)
+        const dummyMenuItems = [
+            {
+                id: 1,
+                name: "Classic Burger",
+                description: "Juicy beef patty with fresh vegetables",
+                image_loc: "https://via.placeholder.com/300x200.png?text=Burger",
+                s_description: "Signature beef burger"
+            },
+            {
+                id: 2,
+                name: "Caesar Salad",
+                description: "Crispy romaine lettuce with parmesan",
+                image_loc: "https://via.placeholder.com/300x200.png?text=Salad",
+                s_description: "Fresh garden salad"
+            }
+        ];
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Load Membership Data
+        function loadMembership() {
+            const userHtml = `
+                <p>User ID: ${dummyUser.id}</p>
+                <p>Name: ${dummyUser.name}</p>
+                <p>Points: ${dummyUser.membership_points}</p>
+                <p>Member Since: ${dummyUser.register_date}</p>
+            `;
+            document.getElementById('user-data').innerHTML = userHtml;
+        }
+
+        // Load Menu Items
+        function loadMenuItems() {
+            const menuHtml = dummyMenuItems.map(item => `
+                <div class="menu-item">
+                    <img src="${item.image_loc}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <small>${item.s_description}</small>
+                </div>
+            `).join('');
+            document.getElementById('menu-items').innerHTML = menuHtml;
+        }
+
+        // Open PDF Menu
+        function openPDF() {
+            // Replace with your PDF URL
+            const pdfUrl = "https://your-supabase-storage-url/menu.pdf";
+            Telegram.WebApp.openLink(pdfUrl);
+        }
+
+        // Initialize
+        window.onload = () => {
+            loadMembership();
+            loadMenuItems();
+        };
+    </script>
+</body>
+</html>
