@@ -1,0 +1,178 @@
+/* Navigation Styles */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0088cc;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-buttons button:hover {
+    background-color: #006699;
+}
+
+/* Cart Button Specific Styles */
+.cart-button {
+    background-color: #28a745 !important;
+    position: relative;
+}
+
+.cart-button:hover {
+    background-color: #218838 !important;
+}
+
+#cart-count {
+    font-size: 0.8em;
+    padding: 2px;
+}
+
+/* Page Styles */
+.page {
+    display: none;
+    padding: 20px;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Menu Item Styles */
+.menu-item {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.menu-item h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.price {
+    font-weight: bold;
+    color: #28a745;
+    margin: 10px 0;
+}
+
+/* Item Controls Styles */
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.add-btn, .remove-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.add-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.quantity {
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Special Request Styles */
+.special-request {
+    margin-top: 15px;
+}
+
+.special-request label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.special-request textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    min-height: 60px;
+    resize: vertical;
+}
+
+/* Cart Page Styles */
+#cart-items {
+    margin-bottom: 20px;
+}
+
+#cart-total {
+    border-top: 2px solid #dee2e6;
+    padding-top: 20px;
+    text-align: right;
+}
+
+.checkout-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.checkout-btn:hover {
+    background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .main-nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .cart-nav {
+        width: 100%;
+    }
+    
+    .cart-button {
+        width: 100%;
+    }
+}

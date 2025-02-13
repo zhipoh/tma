@@ -3,6 +3,8 @@
 <head>
     <title>Restaurant Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,6 +53,11 @@
         <button onclick="showPage('order')">Order</button>
         <button onclick="showPage('faq')">FAQ</button>
     </div>
+    <div class="cart-nav">
+        <button onclick="showPage('cart')" class="cart-button">
+            Cart <span id="cart-count">(0)</span>
+        </button>
+    </div>
 
     <!-- Membership Page -->
     <div id="membership" class="page active">
@@ -69,13 +76,38 @@
     <!-- Order Page -->
     <div id="order" class="page">
         <h2>Order Items</h2>
-        <div id="menu-items"></div>
+        <div id="menu-items">
+            <div class="menu-item">
+                <h3>Item Name</h3>
+                <p>Description</p>
+                <p class="price">SGD$8.00</p>
+                <div class="item-controls">
+                    <button onclick="removeFromCart(this)" class="remove-btn">-</button>
+                    <span class="quantity">0</span>
+                    <button onclick="addToCart(this)" class="add-btn">+</button>
+                </div>
+                <div class="special-request">
+                    <label for="special-request-text">Special Request:</label>
+                    <textarea id="special-request-text" placeholder="Enter any special requests..."></textarea>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- FAQ Page -->
     <div id="faq" class="page">
         <h2>Frequently Asked Questions</h2>
         <p>FAQ content will be added here</p>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cart" class="page">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total">
+            <h3>Total: $<span id="total-amount">10.00</span></h3>
+            <button onclick="checkout()" class="checkout-btn">Proceed to Checkout</button>
+        </div>
     </div>
 
     <script>
