@@ -36,7 +36,7 @@ async def start(update: Update, context: CallbackContext):
     logger.info(f"User {update.effective_user.id} started the bot")
     keyboard = [
         [InlineKeyboardButton(
-            "Enter Shop",
+            "Enter",
             web_app={"url": MINI_APP_URL}
         )]
     ]
