@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 # Constants
 MINI_APP_URL = "https://zhipoh.github.io/tma/"
-WELCOME_IMAGE_PATH = "image.jpg"
+WELCOME_IMAGE_PATH = "images/shop.jpg"
 
 # Load environment variables
 # load_dotenv()
